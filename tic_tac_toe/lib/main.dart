@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
+import 'package:tic_tac_toe/ui/game/provider/game_provider.dart';
 import 'package:tic_tac_toe/ui/home/widgets/home_screen.dart';
 import 'package:tic_tac_toe/ui/themes/color_themes.dart';
 import 'package:tic_tac_toe/ui/themes/text_themes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    gameProvider,
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: colorTheme,
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

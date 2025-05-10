@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AppSizes {
   // Padding sizes
   static const double s4 = 4.0;
@@ -15,7 +17,16 @@ class AppSizes {
 
   static const double playButtonMinWidth = 200;
   static const double playButtonMinHeight = 50;
+  static const double emptyFieldButtonMinSize = 115;
+  static const double dialogButtonMinSize = 50;
+
+  static const double victoryDialogHeight = 250;
+  static const double victoryDialogWidth = 300;
 
   // Radius
-  static const double titleBubbleRadius = 100;
+  static const Radius titleBubbleRadius = Radius.circular(100);
+  static const Radius dialogRadius = Radius.circular(25);
+
+  // Scale
+  static const double victoryAnimationScale = 1.3;
 }

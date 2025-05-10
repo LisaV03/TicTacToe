@@ -12,6 +12,7 @@ class GameBoard extends StatelessWidget {
         height: AppSizes.gridSize,
         width: AppSizes.gridSize,
         child: GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.zero,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
