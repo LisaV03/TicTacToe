@@ -15,7 +15,7 @@ class TitleBubble extends StatelessWidget {
             width: AppSizes.titleBubbleBorderWidth,
           ),
           borderRadius: BorderRadius.all(
-            Radius.circular(AppSizes.titleBubbleRadius),
+            AppSizes.titleBubbleRadius,
           ),
         ),
         child: Text(

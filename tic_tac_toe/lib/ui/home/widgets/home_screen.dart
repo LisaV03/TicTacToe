@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_assets.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_sizes.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
 import 'package:tic_tac_toe/ui/core/ui/game_board.dart';
 import 'package:tic_tac_toe/ui/core/ui/x_icon.dart';
+import 'package:tic_tac_toe/ui/game/view_model/game_viewmodel.dart';
+import 'package:tic_tac_toe/ui/home/view_model/home_viewmodel.dart';
 import 'package:tic_tac_toe/ui/home/widgets/title_bubble.dart';
 import 'package:tic_tac_toe/ui/themes/button_themes.dart';
 
@@ -12,18 +15,29 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget xSizedIcon = SizedBox(
-        height: AppSizes.pieceSize, width: AppSizes.pieceSize, child: XIcon());
+    return Provider(
+      create: (_) => HomeViewModel(),
+      child: HomeScreenContent(),
+    );
+  }
+}
 
+class HomeScreenContent extends StatelessWidget {
+  const HomeScreenContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = Provider.of<HomeViewModel>(context);
+    final gameViewModel = Provider.of<GameViewModel>(context);
     final List<Widget> cells = [
       TitleBubble(text: AppStrings.tic),
-      xSizedIcon,
+      XIcon(),
       SizedBox.shrink(),
-      xSizedIcon,
+      XIcon(),
       TitleBubble(text: AppStrings.tac),
       SizedBox.shrink(),
       SizedBox.shrink(),
-      xSizedIcon,
+      XIcon(),
       TitleBubble(text: AppStrings.toe),
     ];
 
@@ -46,8 +60,11 @@ class HomeScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(top: AppSizes.s80),
-              child: FilledButton(
-                onPressed: () => {print("Button play pressed")},
+              child: ElevatedButton(
+                onPressed: () {
+                  viewModel.onPlayButtonPressed(context);
+                  gameViewModel.resetGame();
+                },
                 style: mainButtonStyle,
                 child: Text(AppStrings.play),
               ),
