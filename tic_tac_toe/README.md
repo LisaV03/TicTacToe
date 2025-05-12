@@ -57,8 +57,3 @@ test
 testing
 ├─── fakes
 └─── models
-
-Playing duration of the first move of the minimax player depending on the depth :
-
-8 -> 22-23s
-7 -> 2-3s
