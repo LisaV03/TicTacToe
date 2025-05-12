@@ -1,15 +1,15 @@
 enum HeuristicValue {
-  winWhileBlockingOpponentWin,
   blockOpponentWin,
   normalValue,
-  infinity;
+  infinity,
+  depth;
 
   int get value {
     switch (this) {
-      case HeuristicValue.winWhileBlockingOpponentWin:
-        return 100;
+      case HeuristicValue.depth:
+        return 8;
       case HeuristicValue.blockOpponentWin:
-        return 10;
+        return HeuristicValue.depth.value - 1;
       case HeuristicValue.normalValue:
         return 0;
       case HeuristicValue.infinity:

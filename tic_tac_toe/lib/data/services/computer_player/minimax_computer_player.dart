@@ -9,7 +9,7 @@ import 'package:tic_tac_toe/enum/player_type.dart';
 class MinimaxComputerPlayer extends AbstractComputerPlayer {
   @override
   int calculateNextMove(GameModel gameModel) {
-    int depth = 6;
+    int depth = HeuristicValue.depth.value;
     GameService gameService = GameService();
     GameModel newGameModel = gameModel.clone();
     List<int> availableMoves = getAllAvailableMoves(newGameModel.board);
@@ -58,21 +58,14 @@ class MinimaxComputerPlayer extends AbstractComputerPlayer {
 // Return the heuristic value of a move that prevent the human to win
   int opponentCanWinIfPlayAtIndexValue(
       GameModel gameModel, GameService gameService, int index) {
-    gameModel.board[index] = PlayerType.human.value;
+    GameModel newGameModel = gameModel.clone();
+    newGameModel.board[index] = PlayerType.human.value;
     bool humanWin =
-        gameService.checkGameOver(gameModel).winner == PlayerType.human;
-    gameModel.board[index] = 0;
-    //Check if computer can win with a move that prevent the human to win
-    if (humanWin) {
-      gameModel.board[index] = PlayerType.computer.value;
-      bool computerWin =
-          gameService.checkGameOver(gameModel).winner == PlayerType.computer;
-      gameModel.board[index] = 0;
-      return computerWin
-          ? HeuristicValue.winWhileBlockingOpponentWin.value
-          : HeuristicValue.blockOpponentWin.value;
-    }
-    return HeuristicValue.normalValue.value;
+        gameService.checkGameOver(newGameModel).winner == PlayerType.human;
+    newGameModel.board[index] = 0;
+    return humanWin
+        ? HeuristicValue.blockOpponentWin.value
+        : HeuristicValue.normalValue.value;
   }
 
   int minimax(GameModel gameModel, int index, int depth, bool isMaximizing,
