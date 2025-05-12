@@ -1,3 +1,5 @@
+import 'package:tic_tac_toe/data/model/game_model.dart';
+
 abstract class AbstractComputerPlayer {
-  int calculateNextMove(List board);
+  int calculateNextMove(GameModel gameModel);
 }

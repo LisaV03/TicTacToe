@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/data/model/game_model.dart';
 import 'package:tic_tac_toe/data/services/computer_player/abstract_computer_player.dart';
-import 'package:tic_tac_toe/data/services/computer_player/random_computer_player.dart';
+import 'package:tic_tac_toe/data/services/computer_player/minimax_computer_player.dart';
 import 'package:tic_tac_toe/data/services/game_service.dart';
 import 'package:tic_tac_toe/enum/player_type.dart';
 import 'package:tic_tac_toe/ui/core/ui/o_icon.dart';
@@ -21,7 +21,8 @@ class GameViewModel extends ChangeNotifier {
   bool get showLossDialog => _showLossDialog;
 
   //TODO Change that when adding different difficulty
-  final AbstractComputerPlayer computerPlayer = RandomComputerPlayer();
+  //final AbstractComputerPlayer computerPlayer = RandomComputerPlayer();
+  final AbstractComputerPlayer computerPlayer = MinimaxComputerPlayer();
 
   GameViewModel() {
     _cells = List<Widget>.generate(
@@ -42,7 +43,7 @@ class GameViewModel extends ChangeNotifier {
   }
 
   void playComputerMove() {
-    int computerMove = computerPlayer.calculateNextMove(gameModel.board);
+    int computerMove = computerPlayer.calculateNextMove(gameModel);
     gameModel = gameService.handleNewTurn(gameModel, computerMove);
     updateBoard(computerMove);
   }
