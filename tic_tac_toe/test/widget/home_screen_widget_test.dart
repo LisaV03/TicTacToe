@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
 
 import 'package:tic_tac_toe/main.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
 import 'package:tic_tac_toe/ui/core/ui/game_board.dart';
-import 'package:tic_tac_toe/ui/game/view_model/game_viewmodel.dart';
-import 'package:tic_tac_toe/ui/game/widget/empty_field_button.dart';
+import 'package:tic_tac_toe/ui/game-difficulty/widget/player_explanation_text.dart';
 import 'package:tic_tac_toe/ui/home/widgets/title_bubble.dart';
 
 void main() {
@@ -14,14 +12,7 @@ void main() {
     testWidgets('Check Home Screen', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: MultiProvider(
-            providers: [
-              ChangeNotifierProvider<GameViewModel>(
-                create: (_) => GameViewModel(),
-              ),
-            ],
-            child: const MyApp(),
-          ),
+          home: const MyApp(),
         ),
       );
 
@@ -36,18 +27,11 @@ void main() {
       expect(find.text(AppStrings.play), findsOneWidget);
     });
 
-    testWidgets('Navigate from Home Screen to Game Screen',
+    testWidgets('Navigate from Home Screen to Game Difficulty Screen',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: MultiProvider(
-            providers: [
-              ChangeNotifierProvider<GameViewModel>(
-                create: (_) => GameViewModel(),
-              ),
-            ],
-            child: const MyApp(),
-          ),
+          home: const MyApp(),
         ),
       );
       expect(find.byType(ElevatedButton), findsOneWidget);
@@ -57,8 +41,8 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(GameBoard), findsOneWidget);
-      expect(find.byType(EmptyFieldButton), findsExactly(9));
+      expect(find.byType(ElevatedButton), findsExactly(2));
+      expect(find.byType(PlayerExplanationText), findsExactly(2));
     });
   });
 }

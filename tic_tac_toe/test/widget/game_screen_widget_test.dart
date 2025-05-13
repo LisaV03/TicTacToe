@@ -8,10 +8,11 @@ import 'package:tic_tac_toe/enum/player_type.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
 import 'package:tic_tac_toe/ui/core/ui/o_icon.dart';
 import 'package:tic_tac_toe/ui/core/ui/x_icon.dart';
-import 'package:tic_tac_toe/ui/game/view_model/game_viewmodel.dart';
-import 'package:tic_tac_toe/ui/game/widget/empty_field_button.dart';
-import 'package:tic_tac_toe/ui/game/widget/game_over_dialog.dart';
-import 'package:tic_tac_toe/ui/game/widget/game_screen.dart';
+import 'package:tic_tac_toe/ui/game-board/view_model/game_over_dialog_viewmodel.dart';
+import 'package:tic_tac_toe/ui/game-board/view_model/game_viewmodel.dart';
+import 'package:tic_tac_toe/ui/game-board/widget/empty_field_button.dart';
+import 'package:tic_tac_toe/ui/game-board/widget/game_over_dialog.dart';
+import 'package:tic_tac_toe/ui/game-board/widget/game_screen.dart';
 import '../mock/game_screen_widget_test.mocks.dart';
 
 @GenerateMocks([GameViewModel])
@@ -41,8 +42,12 @@ void main() {
       when(mockViewModel.showLossDialog).thenReturn(false);
 
       await tester.pumpWidget(
-        ChangeNotifierProvider<GameViewModel>.value(
-          value: mockViewModel,
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<GameViewModel>.value(value: mockViewModel),
+            Provider<GameOverDialogViewModel>(
+                create: (_) => GameOverDialogViewModel()),
+          ],
           child: const MaterialApp(home: GameScreen()),
         ),
       );
@@ -79,8 +84,12 @@ void main() {
       when(mockViewModel.showLossDialog).thenReturn(true);
 
       await tester.pumpWidget(
-        ChangeNotifierProvider<GameViewModel>.value(
-          value: mockViewModel,
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<GameViewModel>.value(value: mockViewModel),
+            Provider<GameOverDialogViewModel>(
+                create: (_) => GameOverDialogViewModel()),
+          ],
           child: const MaterialApp(home: GameScreen()),
         ),
       );
@@ -114,8 +123,12 @@ void main() {
       when(mockViewModel.showLossDialog).thenReturn(false);
 
       await tester.pumpWidget(
-        ChangeNotifierProvider<GameViewModel>.value(
-          value: mockViewModel,
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<GameViewModel>.value(value: mockViewModel),
+            Provider<GameOverDialogViewModel>(
+                create: (_) => GameOverDialogViewModel()),
+          ],
           child: const MaterialApp(home: GameScreen()),
         ),
       );

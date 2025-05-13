@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_assets.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
 import 'package:tic_tac_toe/ui/core/ui/game_board.dart';
-import 'package:tic_tac_toe/ui/game/view_model/game_viewmodel.dart';
-import 'package:tic_tac_toe/ui/game/widget/game_over_dialog.dart';
+import 'package:tic_tac_toe/ui/game-board/view_model/game_over_dialog_viewmodel.dart';
+import 'package:tic_tac_toe/ui/game-board/view_model/game_viewmodel.dart';
+import 'package:tic_tac_toe/ui/game-board/widget/game_over_dialog.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
@@ -31,10 +32,20 @@ class GameScreen extends StatelessWidget {
 
           showDialog(
             context: currentContext,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return GameOverDialog(dialogText: dialogText);
-            },
+            builder: (context) => MultiProvider(
+              providers: [
+                Provider.value(
+                  value: Provider.of<GameOverDialogViewModel>(currentContext,
+                      listen: false),
+                ),
+                ChangeNotifierProvider<GameViewModel>.value(
+                  value: viewModel,
+                ),
+              ],
+              child: GameOverDialog(
+                dialogText: dialogText,
+              ),
+            ),
           );
         });
       });

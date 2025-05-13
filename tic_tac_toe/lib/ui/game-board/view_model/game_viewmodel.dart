@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/data/model/game_model.dart';
 import 'package:tic_tac_toe/data/services/computer_player/abstract_computer_player.dart';
-import 'package:tic_tac_toe/data/services/computer_player/minimax_computer_player.dart';
 import 'package:tic_tac_toe/data/services/game_service.dart';
 import 'package:tic_tac_toe/enum/player_type.dart';
 import 'package:tic_tac_toe/ui/core/ui/o_icon.dart';
 import 'package:tic_tac_toe/ui/core/ui/x_icon.dart';
-import 'package:tic_tac_toe/ui/game/widget/empty_field_button.dart';
-import 'package:tic_tac_toe/ui/game/widget/victory_icon.dart';
+import 'package:tic_tac_toe/ui/game-board/widget/empty_field_button.dart';
+import 'package:tic_tac_toe/ui/game-board/widget/victory_icon.dart';
 
 class GameViewModel extends ChangeNotifier {
+  final AbstractComputerPlayer computerPlayer;
   GameModel gameModel = GameModel();
   final GameService gameService = GameService();
 
@@ -22,9 +22,9 @@ class GameViewModel extends ChangeNotifier {
 
   //TODO Change that when adding different difficulty
   //final AbstractComputerPlayer computerPlayer = RandomComputerPlayer();
-  final AbstractComputerPlayer computerPlayer = MinimaxComputerPlayer();
+  //final AbstractComputerPlayer computerPlayer = MinimaxComputerPlayer();
 
-  GameViewModel() {
+  GameViewModel(this.computerPlayer) {
     _cells = List<Widget>.generate(
       9,
       (int index) => EmptyFieldButton(

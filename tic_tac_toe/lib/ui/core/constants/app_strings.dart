@@ -11,4 +11,9 @@ class AppStrings {
   static const xIcon = 'X';
   static const home = 'Home';
   static const newGame = 'New game';
+  static const easy = 'Easy';
+  static const hard = 'Hard';
+  static const difficultyChoice = 'Choose \nyour challenge:';
+  static const easyExplanation = 'The computer will play random moves.';
+  static const hardExplanation = 'The computer will try to block you and win.';
 }

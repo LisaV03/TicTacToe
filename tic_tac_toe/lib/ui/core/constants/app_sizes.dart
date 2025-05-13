@@ -23,10 +23,17 @@ class AppSizes {
   static const double victoryDialogHeight = 250;
   static const double victoryDialogWidth = 300;
 
+  static const double playerExplanationRectangleHeight = 300;
+
   // Radius
   static const Radius titleBubbleRadius = Radius.circular(100);
   static const Radius dialogRadius = Radius.circular(25);
 
   // Scale
   static const double victoryAnimationScale = 1.3;
+
+  // Font sizes
+  static const double titleMediumFontSize = 28;
+  static const double titleLargeFontSize = 36;
+  static const double bodyMediumFontSize = 14;
 }

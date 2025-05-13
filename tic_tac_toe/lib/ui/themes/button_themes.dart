@@ -38,6 +38,41 @@ final mainButtonStyle = ButtonStyle(
       Size(AppSizes.playButtonMinWidth, AppSizes.playButtonMinHeight)),
 );
 
+final secondaryButtonStyle = ButtonStyle(
+  backgroundColor: WidgetStateProperty.resolveWith<Color>(
+    (Set<WidgetState> states) {
+      if (states.contains(WidgetState.pressed)) {
+        return AppColors.onSecondary;
+      }
+      if (states.contains(WidgetState.disabled)) {
+        return AppColors.secondary.withAlpha(128);
+      }
+      return colorTheme.secondary;
+    },
+  ),
+  textStyle:
+      WidgetStateProperty.resolveWith<TextStyle>((Set<WidgetState> states) {
+    return TextStyle(fontSize: 28);
+  }),
+  foregroundColor:
+      WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+    return Colors.white;
+  }),
+  elevation: WidgetStateProperty.resolveWith<double>(
+    (Set<WidgetState> states) {
+      if (states.contains(WidgetState.pressed)) {
+        return 0;
+      }
+      if (states.contains(WidgetState.hovered)) {
+        return 4;
+      }
+      return 2;
+    },
+  ),
+  minimumSize: WidgetStateProperty.all<Size>(
+      Size(AppSizes.playButtonMinWidth, AppSizes.playButtonMinHeight)),
+);
+
 final emptyFieldButtonStyle = ButtonStyle(
   backgroundColor:
       WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {

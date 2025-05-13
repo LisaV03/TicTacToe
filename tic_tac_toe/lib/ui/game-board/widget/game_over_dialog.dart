@@ -4,27 +4,12 @@ import 'package:tic_tac_toe/ui/core/constants/app_assets.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_sizes.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
 import 'package:tic_tac_toe/ui/core/ui/dialog_icon_button.dart';
-import 'package:tic_tac_toe/ui/game/view_model/game_over_dialog_viewmodel.dart';
-import 'package:tic_tac_toe/ui/game/view_model/game_viewmodel.dart';
+import 'package:tic_tac_toe/ui/game-board/view_model/game_over_dialog_viewmodel.dart';
+import 'package:tic_tac_toe/ui/game-board/view_model/game_viewmodel.dart';
 
 class GameOverDialog extends StatelessWidget {
   final String dialogText;
   const GameOverDialog({super.key, required this.dialogText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => GameOverDialogViewModel(),
-      child: GameOverDialogContent(
-        dialogText: dialogText,
-      ),
-    );
-  }
-}
-
-class GameOverDialogContent extends StatelessWidget {
-  final String dialogText;
-  const GameOverDialogContent({super.key, required this.dialogText});
 
   @override
   Widget build(BuildContext context) {

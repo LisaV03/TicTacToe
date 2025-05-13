@@ -5,7 +5,6 @@ import 'package:tic_tac_toe/ui/core/constants/app_sizes.dart';
 import 'package:tic_tac_toe/ui/core/constants/app_strings.dart';
 import 'package:tic_tac_toe/ui/core/ui/game_board.dart';
 import 'package:tic_tac_toe/ui/core/ui/x_icon.dart';
-import 'package:tic_tac_toe/ui/game/view_model/game_viewmodel.dart';
 import 'package:tic_tac_toe/ui/home/view_model/home_viewmodel.dart';
 import 'package:tic_tac_toe/ui/home/widgets/title_bubble.dart';
 import 'package:tic_tac_toe/ui/themes/button_themes.dart';
@@ -28,7 +27,6 @@ class HomeScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
-    final gameViewModel = Provider.of<GameViewModel>(context);
     final List<Widget> cells = [
       TitleBubble(text: AppStrings.tic),
       XIcon(),
@@ -63,7 +61,6 @@ class HomeScreenContent extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   viewModel.onPlayButtonPressed(context);
-                  gameViewModel.resetGame();
                 },
                 style: mainButtonStyle,
                 child: Text(AppStrings.play),
