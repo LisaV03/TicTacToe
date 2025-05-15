@@ -20,9 +20,6 @@ class GameViewModel extends ChangeNotifier {
   bool _showLossDialog = false;
   bool get showLossDialog => _showLossDialog;
 
-  //TODO Change that when adding different difficulty
-  //final AbstractComputerPlayer computerPlayer = RandomComputerPlayer();
-  //final AbstractComputerPlayer computerPlayer = MinimaxComputerPlayer();
 
   GameViewModel(this.computerPlayer) {
     _cells = List<Widget>.generate(

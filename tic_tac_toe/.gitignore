@@ -32,6 +32,36 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.packages
+.melos_tool/
+generated_plugin_registrant.dart
+
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/build/
+*.xcuserstate
+
+# Android
+android/.gradle/
+android/captures/
+android/app/build/
+android/key.properties
+
+# VS Code
+.vscode/
+
+# macOS
+macos/Flutter/GeneratedPluginRegistrant.swift
+macos/build/
+
+# Web
+web/.dart_tool/
+web/build/
+
 
 # Symbolication related
 app.*.symbols
