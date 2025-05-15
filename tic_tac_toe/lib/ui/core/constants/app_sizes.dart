@@ -23,6 +23,8 @@ class AppSizes {
   static const double victoryDialogHeight = 250;
   static const double victoryDialogWidth = 300;
 
+  static const double playerExplanationRectangleHeight = 300;
+
   // Radius
   static const Radius titleBubbleRadius = Radius.circular(100);
   static const Radius dialogRadius = Radius.circular(25);

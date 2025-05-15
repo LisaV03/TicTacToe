@@ -20,6 +20,7 @@ class GameViewModel extends ChangeNotifier {
   bool _showLossDialog = false;
   bool get showLossDialog => _showLossDialog;
 
+
   GameViewModel(this.computerPlayer) {
     _cells = List<Widget>.generate(
       9,
